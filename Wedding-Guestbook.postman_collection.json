@@ -1,0 +1,50 @@
+{
+  "info": {
+    "name": "Wedding Guestbook API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000/api" },
+    { "key": "adminKey", "value": "change-this-to-a-long-random-secret" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": { "method": "GET", "url": "{{baseUrl}}/health" }
+    },
+    {
+      "name": "Create Wish",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Mahmoud\",\n  \"relationship\": \"Friend\",\n  \"message\": \"Congratulations!\",\n  \"willAttend\": true\n}"
+        },
+        "url": "{{baseUrl}}/wishes"
+      }
+    },
+    {
+      "name": "Get Wishes - Page 1",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/wishes?page=1&limit=5"
+      }
+    },
+    {
+      "name": "Get Wish By Id",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/wishes/:id"
+      }
+    },
+    {
+      "name": "Delete Wish",
+      "request": {
+        "method": "DELETE",
+        "header": [{ "key": "x-admin-key", "value": "{{adminKey}}" }],
+        "url": "{{baseUrl}}/wishes/:id"
+      }
+    }
+  ]
+}
